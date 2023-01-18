@@ -50,6 +50,7 @@ Future<void> startApp() async {
   if (isDesktop) {
     setWindowTitle('Effektio');
   }
+
   GoogleFonts.config.allowRuntimeFetching = false;
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString('google_fonts/LICENSE.txt');
@@ -355,5 +356,4 @@ class _EffektioHomeState extends State<EffektioHome>
       },
     );
   }
-
 }
