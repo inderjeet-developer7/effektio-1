@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
 import 'package:get/get.dart';
 
+import 'AppCommon.dart';
+
 class ToDoListView extends StatefulWidget {
   final String title;
   final String subtitle;
@@ -97,7 +99,13 @@ class _ToDoListViewState extends State<ToDoListView> {
                   ),
                 ),
                 buildSubtitle(),
-                buildDivider(),
+                buildDivider(
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -125,7 +133,8 @@ class _ToDoListViewState extends State<ToDoListView> {
                                 color: ToDoTheme.primaryTextColor,
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 5),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 5),
                                 child: Text(
                                   '${todoController.messageCount}',
                                   style: ToDoTheme.calendarTextStyle,
@@ -142,7 +151,13 @@ class _ToDoListViewState extends State<ToDoListView> {
                     ),
                   ],
                 ),
-                buildDivider(),
+                buildDivider(
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -276,15 +291,6 @@ class _ToDoListViewState extends State<ToDoListView> {
                 color: ToDoTheme.calendarColor,
               ),
             ),
-    );
-  }
-
-  Widget buildDivider() {
-    return const Divider(
-      color: ToDoTheme.listDividerColor,
-      indent: 0,
-      endIndent: 0,
-      thickness: 1,
     );
   }
 }

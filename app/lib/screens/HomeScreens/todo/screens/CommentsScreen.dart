@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:beamer/beamer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:effektio/common/store/themes/SeperatedThemes.dart';
 import 'package:effektio/controllers/news_comment_controller.dart';
@@ -18,11 +17,9 @@ class ToDoCommentScreen extends StatefulWidget {
 }
 
 class _ToDoCommentScreenState extends State<ToDoCommentScreen> {
-
   bool emojiShowing = false;
   bool isKeyBoardOpen = false;
   TextEditingController commentTextController = TextEditingController();
-
 
   void onEmojiSelected(Emoji emoji) {
     commentTextController
@@ -47,7 +44,7 @@ class _ToDoCommentScreenState extends State<ToDoCommentScreen> {
         backgroundColor: AppCommonTheme.backgroundColorLight,
         leading: GestureDetector(
           onTap: () {
-            Beamer.of(context).beamBack();
+            Navigator.pop(context);
           },
           child: const Icon(
             Icons.arrow_back_ios,
@@ -74,8 +71,7 @@ class _ToDoCommentScreenState extends State<ToDoCommentScreen> {
                     return Padding(
                       padding: const EdgeInsets.all(12),
                       child: ToDoCommentView(
-                        commentModel: newsCommentController
-                            .listComments[index],
+                        commentModel: newsCommentController.listComments[index],
                         postition: index,
                       ),
                     );
@@ -207,7 +203,7 @@ class _ToDoCommentScreenState extends State<ToDoCommentScreen> {
       },
       child: CachedNetworkImage(
         imageUrl:
-        'https://dragonball.guru/wp-content/uploads/2021/01/goku-dragon-ball-guru.jpg',
+            'https://dragonball.guru/wp-content/uploads/2021/01/goku-dragon-ball-guru.jpg',
         height: 45,
         width: 45,
         imageBuilder: (context, imageProvider) => Container(

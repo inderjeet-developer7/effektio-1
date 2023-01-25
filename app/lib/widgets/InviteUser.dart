@@ -1,5 +1,5 @@
-import 'package:beamer/beamer.dart';
 import 'package:effektio/common/store/themes/SeperatedThemes.dart';
+import 'package:effektio/widgets/AppCommon.dart';
 import 'package:flutter/material.dart';
 
 class InviteUserDialog extends StatefulWidget {
@@ -37,27 +37,69 @@ class _InviteUserDialogState extends State<InviteUserDialog> {
                     textAlign: TextAlign.center,
                     style: ToDoTheme.subtitleTextStyle.copyWith(
                       color: ToDoTheme.calendarColor,
-                      fontSize: 15,),
+                      fontSize: 15,
+                    ),
                   ),
                   const SizedBox(
                     height: 16,
                   ),
                   Column(
                     children: [
-                      buildDivider(),
-                      Text('Whatsapp', style : ToDoTheme.titleTextStyle.copyWith(fontSize: 16)),
-                      buildDivider(),
-                      Text('Email', style : ToDoTheme.titleTextStyle.copyWith(fontSize: 16)),
-                      buildDivider(),
-                      Text('SMS', style : ToDoTheme.titleTextStyle.copyWith(fontSize: 16)),
-                      buildDivider(),
-                      Text('Invitation Link', style : ToDoTheme.titleTextStyle.copyWith(fontSize: 16)),
-                      buildDivider(),
+                      buildDivider(
+                        2,
+                        12.0,
+                        0.0,
+                        0,
+                        0,
+                      ),
+                      Text('Whatsapp',
+                          style:
+                              ToDoTheme.titleTextStyle.copyWith(fontSize: 16)),
+                      buildDivider(
+                        2,
+                        12.0,
+                        0.0,
+                        0,
+                        0,
+                      ),
+                      Text('Email',
+                          style:
+                              ToDoTheme.titleTextStyle.copyWith(fontSize: 16)),
+                      buildDivider(
+                        2,
+                        12.0,
+                        0.0,
+                        0,
+                        0,
+                      ),
+                      Text('SMS',
+                          style:
+                              ToDoTheme.titleTextStyle.copyWith(fontSize: 16)),
+                      buildDivider(
+                        2,
+                        12.0,
+                        0.0,
+                        0,
+                        0,
+                      ),
+                      Text('Invitation Link',
+                          style:
+                              ToDoTheme.titleTextStyle.copyWith(fontSize: 16)),
+                      buildDivider(
+                        2,
+                        12.0,
+                        0.0,
+                        0,
+                        0,
+                      ),
                       GestureDetector(
-                        onTap: (){
-                          Beamer.of(context).beamBack();
+                        onTap: () {
+                          Navigator.pop(context);
                         },
-                        child: Text('Cancel', style : ToDoTheme.titleTextStyle.copyWith(fontSize: 16, color: Colors.red)),)
+                        child: Text('Cancel',
+                            style: ToDoTheme.titleTextStyle
+                                .copyWith(fontSize: 16, color: Colors.red)),
+                      )
                     ],
                   ),
                 ],
@@ -65,18 +107,6 @@ class _InviteUserDialogState extends State<InviteUserDialog> {
             ),
           )
         ],
-      ),
-    );
-  }
-
-  Widget buildDivider() {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 12.0),
-      child: Divider(
-        height: 2,
-        indent: 0,
-        endIndent: 0,
-        color: Colors.grey,
       ),
     );
   }

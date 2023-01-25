@@ -75,7 +75,7 @@ class SideDrawer extends StatelessWidget {
               ),
               onPressed: () {
                 Beamer.of(context).beamToNamed('/login');
-                },
+              },
               child: Text(AppLocalizations.of(context)!.login),
             ),
           ),
@@ -90,7 +90,7 @@ class SideDrawer extends StatelessWidget {
               ),
               onPressed: () {
                 Beamer.of(context).beamToNamed('/signup');
-                },
+              },
               child: Text(AppLocalizations.of(context)!.signUp),
             ),
           ),
@@ -100,10 +100,7 @@ class SideDrawer extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        showNotYetImplementedMsg(
-          context,
-          'Profile View not implemented yet',
-        );
+        Beamer.of(context).beamToNamed('/profile');
       },
       child: Row(
         children: [

@@ -1,4 +1,3 @@
-import 'package:beamer/beamer.dart';
 import 'package:effektio/common/store/themes/SeperatedThemes.dart';
 import 'package:flutter/material.dart';
 import 'package:timelines/timelines.dart';
@@ -19,7 +18,7 @@ class _MyAssignmentScreenState extends State<MyRecentActivityScreen> {
         backgroundColor: AppCommonTheme.backgroundColorLight,
         leading: GestureDetector(
           onTap: () {
-            Beamer.of(context).beamBack();
+            Navigator.pop(context);
           },
           child: const Icon(
             Icons.arrow_back_ios,
@@ -36,8 +35,7 @@ class _MyAssignmentScreenState extends State<MyRecentActivityScreen> {
             children: [
               const Text(
                 'My Recent Activity',
-                style:
-                ToDoTheme.listTitleTextStyle,
+                style: ToDoTheme.listTitleTextStyle,
               ),
               const SizedBox(
                 height: 16,
@@ -62,11 +60,17 @@ class _MyAssignmentScreenState extends State<MyRecentActivityScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Oct 19, 06:30', style: ToDoTheme.listSubtitleTextStyle.copyWith(
-                          color: ToDoTheme.inactiveTextColor,
-                          fontSize: 13,
-                        ),),
-                        const Text('David Chunli posted this ToDo', style: ToDoTheme.listTitleTextStyle,),
+                        Text(
+                          'Oct 19, 06:30',
+                          style: ToDoTheme.listSubtitleTextStyle.copyWith(
+                            color: ToDoTheme.inactiveTextColor,
+                            fontSize: 13,
+                          ),
+                        ),
+                        const Text(
+                          'David Chunli posted this ToDo',
+                          style: ToDoTheme.listTitleTextStyle,
+                        ),
                       ],
                     ),
                   ),

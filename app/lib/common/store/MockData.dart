@@ -1,3 +1,4 @@
+import 'package:effektio/models/SessionInfoModel.dart';
 import 'package:flutter/material.dart';
 
 final List<Image> newsFeeds = [
@@ -67,4 +68,55 @@ final List<String> taskRole = [
   'UnAssign',
   'Owner',
   'Assign',
+];
+
+final List<SessionInfoModel> sessionModels = [
+  SessionInfoModel(
+    true,
+    "David's Iphone",
+    'QQIRYBS422',
+    'Fulham England',
+    true,
+    '',
+  ),
+  SessionInfoModel(
+    false,
+    'Phone Name A',
+    'YOIET9644H',
+    'Fulham England',
+    false,
+    '2 minutes ago',
+  ),
+  SessionInfoModel(
+    false,
+    'Alcatel Note 9',
+    'YOIET9644H',
+    'Fulham England',
+    false,
+    'Yesterday, 19:23 pm',
+  ),
+  SessionInfoModel(
+    false,
+    'Alcatel Note 8',
+    'YOIET9644H',
+    'Fulham England',
+    false,
+    'Yesterday, 18:45 pm',
+  ),
+  SessionInfoModel(
+    false,
+    'Alcatel Tablet Note 9',
+    '6HHHNDMDS',
+    'Fulham England',
+    false,
+    'Yesterday, 19:23 pm',
+  ),
+  SessionInfoModel(
+    false,
+    "David's Ipad",
+    '6HHHNDMDS',
+    'Fulham England',
+    false,
+    '2 month ago',
+  ),
 ];

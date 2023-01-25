@@ -327,7 +327,7 @@ class NotificationPopUpTheme {
     TextStyle(
       fontSize: 15,
       fontWeight: FontWeight.w300,
-      color : networkTextColor,
+      color: networkTextColor,
     ),
   );
 }
@@ -508,4 +508,91 @@ class PinsTheme {
     fontSize: 25,
     fontWeight: FontWeight.w700,
   );
+}
+
+class ProfileTheme {
+  static const backgroundColor = ColorRef(Color(0xff333540));
+  static const primaryTextColor = ColorRef(Colors.white, id: 'ABT');
+  static const secondaryTextColor = ColorRef(Colors.grey);
+  static const greenButtonColor = ColorRef(Color(0xff33C481));
+  static const redButtonColor = ColorRef(Color(0xffEC2758));
+  static const gridBackgroundColor = ColorRef(Color.fromRGBO(36, 38, 50, 1));
+  static const loadingIndicatorColor = ColorRef(Colors.grey);
+  static const anotherTextColor = ColorRef(Color(0xffE5E5E5));
+  static const cardInfoColor = ColorRef(Color(0xFFC4C4C4));
+  static const sheetBackgroundColor = ColorRef(Color(0xFF333540));
+  static const cardBackgroundColor = ColorRef(Color(0xFF2F313E));
+  static const cardBackgroundColorDark = ColorRef(Color(0xFF242632));
+  static const activeSwitchColor = ColorRef(Color(0xFF33C481));
+
+  static const headerTextStyle = TextStyleRef(
+    TextStyle(
+      fontSize: 22,
+      fontWeight: FontWeight.w600,
+      color: primaryTextColor,
+    ),
+  );
+
+  static const primaryTextStyle = TextStyleRef(
+    TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w300,
+      color: cardInfoColor,
+    ),
+  );
+
+  static const noteTextStyle = TextStyleRef(
+    TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w300,
+      color: anotherTextColor,
+    ),
+  );
+
+  static const privacyTitleStyle = TextStyleRef(
+    TextStyle(
+      fontSize: 18,
+      fontWeight: FontWeight.w500,
+      color: primaryTextColor,
+    ),
+  );
+
+  static const listTitleStyle = TextStyleRef(
+    TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: primaryTextColor,
+    ),
+  );
+
+  static const listSubtitleStyle = TextStyleRef(
+    TextStyle(
+      fontSize: 15,
+      fontWeight: FontWeight.w500,
+      color: cardInfoColor,
+    ),
+  );
+
+  static const sectionHeaderStyle = TextStyleRef(
+    TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+      color: cardInfoColor,
+    ),
+  );
+
+  static const sheetTextStyle = TextStyleRef(
+    TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+      color: Colors.white,
+    ),
+  );
+
+  static Widget buildArrow() {
+    return const Icon(
+      Icons.arrow_forward_ios,
+      color: cardInfoColor,
+    );
+  }
 }

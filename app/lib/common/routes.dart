@@ -28,54 +28,81 @@ import 'package:effektio/screens/HomeScreens/todo/screens/ToDoBookmarks.dart';
 import 'package:effektio/screens/OnboardingScreens/LogIn.dart';
 import 'package:effektio/screens/OnboardingScreens/Signup.dart';
 import 'package:effektio/screens/SideMenuScreens/Gallery.dart';
-import 'package:effektio/screens/UserScreens/SocialProfile.dart';
+import 'package:effektio/screens/SideMenuScreens/Profile/PrivacyAndSafety.dart';
+import 'package:effektio/screens/SideMenuScreens/Profile/ProfileScreen.dart';
+import 'package:effektio/screens/SideMenuScreens/Profile/ProtectedAccessScreen.dart';
+import 'package:effektio/screens/SideMenuScreens/Profile/SessionManagementScreen.dart';
 import 'package:effektio_flutter_sdk/effektio_flutter_sdk_ffi.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
-  static RoutesLocationBuilder getRoutes(){
+  static RoutesLocationBuilder getRoutes() {
     return RoutesLocationBuilder(
       routes: {
         '/': (context, state, data) => const EffektioHome(),
         '/login': (context, state, data) => const LoginScreen(),
-        '/profile': (context, state, data) => const SocialProfileScreen(),
+        '/profile': (context, state, data) => const ProfileScreen(),
+        '/privacy': (context, state, data) => const PrivacyAndSafety(),
+        '/sessionManager': (context, state, data) => const SessionManager(),
+        '/protectAccess': (context, state, data) =>
+            const ProtectedAccessScreen(),
         '/signup': (context, state, data) => const SignupScreen(),
         '/gallery': (context, state, data) => const GalleryScreen(),
         '/todo': (context, state, data) => const ToDoScreen(),
         '/addTodo': (context, state, data) => const AddToDoScreen(),
-        '/createTask' : (context, state, data) => const CreateTaskScreen(),
-        '/groupLink' : (context, state, data) => const GroupLinkScreen(),
-        '/myAssignment' : (context, state, data) => const MyAssignmentScreen(),
-        '/todoBookmarks' : (context, state, data) => const ToDoBookmarkScreen(),
-        '/myRecentActivity' : (context, state, data) => const MyRecentActivityScreen(),
-        '/todoComment' : (context, state, data) => const ToDoCommentScreen(),
-        '/todoSubscriber' : (context, state, data) => const ToDoSubscriberScreen(),
-        '/faqListItem' : (context, state, data) {
-          return FaqItemScreen(faqModel : (data as FaqModel),);
+        '/createTask': (context, state, data) => const CreateTaskScreen(),
+        '/groupLink': (context, state, data) => const GroupLinkScreen(),
+        '/myAssignment': (context, state, data) => const MyAssignmentScreen(),
+        '/todoBookmarks': (context, state, data) => const ToDoBookmarkScreen(),
+        '/myRecentActivity': (context, state, data) =>
+            const MyRecentActivityScreen(),
+        '/todoComment': (context, state, data) => const ToDoCommentScreen(),
+        '/todoSubscriber': (context, state, data) =>
+            const ToDoSubscriberScreen(),
+        '/faqListItem': (context, state, data) {
+          return FaqItemScreen(
+            faqModel: (data as FaqModel),
+          );
         },
-        '/todoTaskEditor' : (context, state, data) {
-          return ToDoTaskEditor(todoTaskEditorModel: (data as TodoTaskEditorModel),);
+        '/todoTaskEditor': (context, state, data) {
+          return ToDoTaskEditor(
+            todoTaskEditorModel: (data as TodoTaskEditorModel),
+          );
         },
-        '/chat' : (context, state, data) {
-          return ChatScreen( chatModel: (data as ChatModel),);
+        '/chat': (context, state, data) {
+          return ChatScreen(
+            chatModel: (data as ChatModel),
+          );
         },
-        '/imageSelection' : (context, state, data) {
-          return ImageSelection(imageSelectionModel: (data as ImageSelectionModel),);
+        '/imageSelection': (context, state, data) {
+          return ImageSelection(
+            imageSelectionModel: (data as ImageSelectionModel),
+          );
         },
-        '/todoTaskAssign' : (context, state, data) {
-          return ToDoTaskAssignScreen(avatars : (data as List<ImageProvider<Object>>),);
+        '/todoTaskAssign': (context, state, data) {
+          return ToDoTaskAssignScreen(
+            avatars: (data as List<ImageProvider<Object>>),
+          );
         },
-        '/roomLinkSettings' : (context, state, data) {
-          return RoomLinkSettingsScreen(room : (data as Conversation),);
+        '/roomLinkSettings': (context, state, data) {
+          return RoomLinkSettingsScreen(
+            room: (data as Conversation),
+          );
         },
-        '/editGroupInfoScreen' : (context, state, data) {
-          return EditGroupInfoScreen(editGroupInfoModel: (data as EditGroupInfoModel),);
+        '/editGroupInfoScreen': (context, state, data) {
+          return EditGroupInfoScreen(
+            editGroupInfoModel: (data as EditGroupInfoModel),
+          );
         },
-        '/requestScreen' : (context, state, data) {
-          return RequestScreen(requestScreenModel: (data as RequestScreenModel),);
+        '/requestScreen': (context, state, data) {
+          return RequestScreen(
+            requestScreenModel: (data as RequestScreenModel),
+          );
         },
-        '/chatProfile' : (context, state, data) {
-          return ChatProfileScreen(chatProfileModel: (data as ChatProfileModel),);
+        '/chatProfile': (context, state, data) {
+          return ChatProfileScreen(
+            chatProfileModel: (data as ChatProfileModel),
+          );
         },
       },
     );

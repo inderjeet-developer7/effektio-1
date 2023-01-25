@@ -1,11 +1,9 @@
-import 'package:beamer/beamer.dart';
 import 'package:effektio/common/store/themes/SeperatedThemes.dart';
 import 'package:effektio/controllers/todo_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ToDoSubscriberScreen extends StatefulWidget {
-
   const ToDoSubscriberScreen({Key? key}) : super(key: key);
 
   @override
@@ -22,7 +20,7 @@ class _ToDoSubscriberScreenState extends State<ToDoSubscriberScreen> {
         backgroundColor: AppCommonTheme.backgroundColorLight,
         leading: GestureDetector(
           onTap: () {
-            Beamer.of(context).beamBack();
+            Navigator.pop(context);
           },
           child: const Icon(
             Icons.close,
@@ -37,19 +35,20 @@ class _ToDoSubscriberScreenState extends State<ToDoSubscriberScreen> {
         centerTitle: true,
         actions: [
           Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              margin:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
-              decoration: BoxDecoration(
-                  color: AppCommonTheme.primaryColor,
-                  borderRadius: BorderRadius.circular(8.0),),
-              child: Center(
-                child: Text(
-                  'Save',
-                  style: ToDoTheme.buttonTextStyle
-                      .copyWith(color: ToDoTheme.primaryTextColor),
-                ),
-              ),)
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
+            decoration: BoxDecoration(
+              color: AppCommonTheme.primaryColor,
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Center(
+              child: Text(
+                'Save',
+                style: ToDoTheme.buttonTextStyle
+                    .copyWith(color: ToDoTheme.primaryTextColor),
+              ),
+            ),
+          )
         ],
       ),
       body: Padding(
@@ -58,7 +57,7 @@ class _ToDoSubscriberScreenState extends State<ToDoSubscriberScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal : 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
                 'No one will be notified when someone comments on this ToDo list',
                 style: ToDoTheme.listTitleTextStyle.copyWith(
@@ -74,14 +73,17 @@ class _ToDoSubscriberScreenState extends State<ToDoSubscriberScreen> {
                   activeColor: AppCommonTheme.secondaryColor,
                   side: MaterialStateBorderSide.resolveWith(
                     (states) => const BorderSide(
-                        width: 1.0, color: AppCommonTheme.secondaryColor,),
+                      width: 1.0,
+                      color: AppCommonTheme.secondaryColor,
+                    ),
                   ),
-                  onChanged: (newValue) {
-                  },
+                  onChanged: (newValue) {},
                 ),
-                Text('Select everyone',
-                    style: ToDoTheme.subtitleTextStyle
-                        .copyWith(color: AppCommonTheme.secondaryColor),),
+                Text(
+                  'Select everyone',
+                  style: ToDoTheme.subtitleTextStyle
+                      .copyWith(color: AppCommonTheme.secondaryColor),
+                ),
               ],
             ),
             GetBuilder<ToDoController>(
@@ -111,7 +113,9 @@ class _ToDoSubscriberScreenState extends State<ToDoSubscriberScreen> {
                         activeColor: AppCommonTheme.secondaryColor,
                         side: MaterialStateBorderSide.resolveWith(
                           (states) => const BorderSide(
-                              width: 1.0, color: AppCommonTheme.secondaryColor,),
+                            width: 1.0,
+                            color: AppCommonTheme.secondaryColor,
+                          ),
                         ),
                         onChanged: (newValue) {
                           setState(() {
@@ -144,7 +148,8 @@ class _ToDoSubscriberScreenState extends State<ToDoSubscriberScreen> {
                   value: true,
                   groupValue: true,
                   fillColor: MaterialStateColor.resolveWith(
-                      (states) => AppCommonTheme.primaryColor,),
+                    (states) => AppCommonTheme.primaryColor,
+                  ),
                   onChanged: (value) {},
                 ),
                 Flexible(

@@ -140,7 +140,8 @@ class _ChatScreenState extends State<ChatScreen> {
         if (!controller.isEmojiContainerVisible) {
           return CustomChatInput(
             isChatScreen: true,
-            roomName: widget.chatModel.roomName ?? AppLocalizations.of(context)!.noName,
+            roomName: widget.chatModel.roomName ??
+                AppLocalizations.of(context)!.noName,
             onButtonPressed: () => onSendButtonPressed(controller),
           );
         }
@@ -190,7 +191,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                     children: [
                                       GestureDetector(
                                         onTap: () {
-                                          Beamer.of(context).beamBack();
+                                          Navigator.pop(context);
                                         },
                                         child: const Icon(
                                           Icons.close,
@@ -436,14 +437,17 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget buildProfileAction() {
     return GestureDetector(
       onTap: () {
-        Beamer.of(context).beamToNamed('/chatProfile',data: ChatProfileModel(
-          client: widget.chatModel.client,
-          room: widget.chatModel.room,
-          roomName: widget.chatModel.roomName,
-          roomAvatar: widget.chatModel.roomAvatar,
-          isGroup: true,
-          isAdmin: true,
-        ),);
+        Beamer.of(context).beamToNamed(
+          '/chatProfile',
+          data: ChatProfileModel(
+            client: widget.chatModel.client,
+            room: widget.chatModel.room,
+            roomName: widget.chatModel.roomName,
+            roomAvatar: widget.chatModel.roomAvatar,
+            isGroup: true,
+            isAdmin: true,
+          ),
+        );
       },
       child: Padding(
         padding: const EdgeInsets.only(right: 10),
@@ -651,7 +655,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
             GestureDetector(
               onTap: () {
-                Beamer.of(context).beamBack();
+                Navigator.pop(context);
               },
               child: const Padding(
                 padding: EdgeInsets.all(16),

@@ -11,7 +11,6 @@ import 'package:effektio/controllers/network_controller.dart';
 import 'package:effektio/controllers/receipt_controller.dart';
 import 'package:effektio/l10n/l10n.dart';
 import 'package:effektio/screens/HomeScreens/chat/Overview.dart';
-
 // import 'package:effektio/screens/HomeScreens/Notification.dart';
 import 'package:effektio/screens/HomeScreens/faq/Overview.dart';
 import 'package:effektio/screens/HomeScreens/news/News.dart';
@@ -252,7 +251,6 @@ class _EffektioHomeState extends State<EffektioHome>
             : SvgPicture.asset('assets/images/notification_linear.svg'),
       ),
     );
-
   }
 
   Widget buildHomeScreen(BuildContext context, Client client) {
@@ -267,6 +265,7 @@ class _EffektioHomeState extends State<EffektioHome>
           }
       },
     );
+
     return DefaultTabController(
       length: 4,
       key: const Key('bottom-bar'),

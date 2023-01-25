@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:effektio/common/store/themes/SeperatedThemes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 Widget navBarTitle(String title) {
   return Text(
@@ -147,4 +148,44 @@ bool isOnlyEmojis(String text) {
 
   // return true if nothing else left
   return text.isEmpty;
+}
+
+Widget verticalSpace(double size) {
+  return SizedBox(
+    height: size,
+  );
+}
+
+Widget horizontalSpace(double size) {
+  return SizedBox(
+    width: size,
+  );
+}
+
+Widget buildDivider(
+  double height,
+  double paddingVertical,
+  double paddingHorizontal,
+  double indent,
+  double endIntent,
+) {
+  return Padding(
+    padding: EdgeInsets.symmetric(
+      vertical: paddingVertical,
+      horizontal: paddingHorizontal,
+    ),
+    child: Divider(
+      height: height,
+      indent: indent,
+      endIndent: endIntent,
+      color: Colors.grey,
+    ),
+  );
+}
+
+void copyText(BuildContext context, String data) {
+  Clipboard.setData(ClipboardData(text: data)).then((_) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text('Copied')));
+  });
 }
