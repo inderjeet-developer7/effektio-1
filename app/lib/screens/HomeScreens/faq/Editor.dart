@@ -291,7 +291,7 @@ class _HtmlEditorExampleState extends State<HtmlEditorExample> {
                               tagColor == null ? Colors.white : tagColor!,
                             );
                             debugPrint(_tagColorList.length.toString());
-                            Navigator.pop(context);
+                            Navigator.of(context).pop();
                             tagTitleController.clear();
                           });
                         } else {

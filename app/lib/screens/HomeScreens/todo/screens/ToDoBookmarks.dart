@@ -1,4 +1,3 @@
-import 'package:beamer/beamer.dart';
 import 'package:effektio/common/store/themes/SeperatedThemes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
@@ -19,7 +18,7 @@ class _ToDoBookmarkScreenState extends State<ToDoBookmarkScreen> {
         backgroundColor: AppCommonTheme.backgroundColorLight,
         leading: GestureDetector(
           onTap: () {
-            Beamer.of(context).beamBack();
+            Navigator.pop(context);
           },
           child: const Icon(
             Icons.arrow_back_ios,
@@ -59,7 +58,7 @@ class _ToDoBookmarkScreenState extends State<ToDoBookmarkScreen> {
                   children: [
                     Text(
                       'Oct 19 at 3:36am',
-                      style: ToDoTheme.subtitleTextStyle.copyWith(
+                      style: ToDoTheme.descriptionTextStyle.copyWith(
                         color: ToDoTheme.calendarColor,
                         fontSize: 13,
                       ),
@@ -135,7 +134,7 @@ class _ToDoBookmarkScreenState extends State<ToDoBookmarkScreen> {
                   ),
                   InkWell(
                     onTap: () {
-                      Beamer.of(context).beamBack();
+                      Navigator.pop(context);
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
@@ -148,7 +147,7 @@ class _ToDoBookmarkScreenState extends State<ToDoBookmarkScreen> {
                       ),
                       child: const Text(
                         'Okay',
-                        style: ToDoTheme.subtitleTextStyle,
+                        style: ToDoTheme.descriptionTextStyle,
                       ),
                     ),
                   )

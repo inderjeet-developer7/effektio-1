@@ -28,7 +28,7 @@ object EfkColor {
     fn rgba_u8() -> (u8, u8, u8, u8);
 }
 
-object UtcDateTime { 
+object UtcDateTime {
     fn timestamp() -> i64;
     fn to_rfc2822() -> string;
     fn to_rfc3339() -> string;
@@ -51,7 +51,7 @@ object News {
     /// if given, the specific background color
     fn bg_color() -> Option<EfkColor>; 
     /// if given, the image
-    fn image() -> Option<Vec<u8>>; 
+    fn image() -> Option<Vec<u8>>;
 }
 
 object Tag {
@@ -80,6 +80,8 @@ object Faq {
     /// the number of comments on this item
     fn comments_count() -> u32;
 }
+
+object MediaSource {}
 
 object DeviceId {
     fn to_string() -> string;
@@ -114,8 +116,8 @@ object RoomEventItem {
     /// the server receiving timestamp in milliseconds
     fn origin_server_ts() -> u64;
 
-    /// one of Message/RedactedMessage/UnableToDecrypt/FailedToParseMessageLike/FailedToParseState
-    fn item_content_type() -> string;
+    /// one of Message/Redaction/UnableToDecrypt/FailedToParseMessageLike/FailedToParseState
+    fn event_type() -> string;
 
     /// the type of massage, like audio, text, image, file, etc
     fn msgtype() -> Option<string>;
@@ -125,6 +127,9 @@ object RoomEventItem {
 
     /// contains source data, name, mimetype, size, width and height
     fn image_desc() -> Option<ImageDesc>;
+
+    /// contains source data, name, mimetype, size, width and height
+    fn video_desc() -> Option<VideoDesc>;
 
     /// contains source data, name, mimetype and size
     fn file_desc() -> Option<FileDesc>;
@@ -142,7 +147,13 @@ object RoomEventItem {
     fn is_editable() -> bool;
 }
 
-object RoomVirtualItem {}
+object RoomVirtualItem {
+    /// one of DayDivider/LoadingIndicator/ReadMarker/TimelineStart
+    fn event_type() -> string;
+
+    /// contains description text
+    fn desc() -> Option<string>;
+}
 
 /// A room Message metadata and content
 object RoomMessage {
@@ -182,6 +193,59 @@ object ImageDesc {
 
     /// image height
     fn height() -> Option<u64>;
+
+    /// thumbnail mimetype
+    fn thumbnail_mimetype() -> Option<string>;
+
+    /// thumbnail file size
+    fn thumbnail_size() -> Option<u64>;
+
+    /// thumbnail image width
+    fn thumbnail_width() -> Option<u64>;
+
+    /// thumbnail image height
+    fn thumbnail_height() -> Option<u64>;
+
+    /// thumbnail source
+    fn thumbnail_source() -> Option<MediaSource>;
+}
+
+object VideoDesc {
+    /// file name
+    fn name() -> string;
+
+    /// MIME
+    fn mimetype() -> Option<string>;
+
+    /// file size in bytes
+    fn size() -> Option<u64>;
+
+    /// image width
+    fn width() -> Option<u64>;
+
+    /// image height
+    fn height() -> Option<u64>;
+
+    /// blurhash
+    fn blurhash() -> Option<string>;
+
+    /// duration in seconds
+    fn duration() -> Option<u64>;
+
+    /// thumbnail mimetype
+    fn thumbnail_mimetype() -> Option<string>;
+
+    /// thumbnail file size
+    fn thumbnail_size() -> Option<u64>;
+
+    /// thumbnail image width
+    fn thumbnail_width() -> Option<u64>;
+
+    /// thumbnail image height
+    fn thumbnail_height() -> Option<u64>;
+
+    /// thumbnail source
+    fn thumbnail_source() -> Option<MediaSource>;
 }
 
 object FileDesc {
@@ -193,6 +257,21 @@ object FileDesc {
 
     /// file size in bytes
     fn size() -> Option<u64>;
+
+    /// thumbnail mimetype
+    fn thumbnail_mimetype() -> Option<string>;
+
+    /// thumbnail file size
+    fn thumbnail_size() -> Option<u64>;
+
+    /// thumbnail image width
+    fn thumbnail_width() -> Option<u64>;
+
+    /// thumbnail image height
+    fn thumbnail_height() -> Option<u64>;
+
+    /// thumbnail source
+    fn thumbnail_source() -> Option<MediaSource>;
 }
 
 object ReactionDesc {
@@ -333,7 +412,7 @@ object Conversation {
 }
 
 object CommentDraft {
-    /// set the content of the draft to body 
+    /// set the content of the draft to body
     fn content_text(body: string);
 
     /// set the content to a formatted body of html_body, where body is the tag-stripped version
@@ -365,7 +444,7 @@ object CommentsManager {
     /// Does this item have any comments?
     fn has_comments() -> bool;
 
-    /// How many comments does this item have 
+    /// How many comments does this item have
     fn comments_count() -> u32;
 
     /// draft a new comment for this item
@@ -406,7 +485,7 @@ object Task {
 
     /// When this was started
     fn utc_start() -> Option<UtcDateTime>;
-    
+
     /// Has this been colored in?
     fn color() -> Option<EfkColor>;
 
@@ -540,11 +619,9 @@ object TaskDraft {
     fn utc_start_from_format(utc_start: string, format: string)-> Result<bool>;
     fn unset_utc_start();
 
-
     /// set the sort order for this task list
     fn progress_percent(progress_percent: u8);
     fn unset_progress_percent();
-    
 
     /// set the keywords for this task list
     fn keywords(keywords: Vec<string>);
@@ -579,7 +656,7 @@ object TaskList {
 
     /// order in the list
     fn sort_order() -> u32;
-    
+
     /// Has this been colored in?
     fn color() -> Option<EfkColor>;
     
@@ -594,6 +671,9 @@ object TaskList {
 
     /// The tasks belonging to this tasklist
     fn tasks() -> Future<Result<Vec<Task>>>;
+
+    /// make a builder for creating the task draft
+    fn task_builder() -> Result<TaskDraft>;
 
     /// make a builder for updating the task list
     fn update_builder() -> Result<TaskListUpdateBuilder>;
@@ -665,6 +745,9 @@ object Group {
     /// the members currently in the group
     fn active_members() -> Future<Result<Vec<Member>>>;
 
+    /// the room id
+    fn get_room_id() -> string;
+
     // the members currently in the room
     fn get_member(user_id: string) -> Future<Result<Member>>;
 
@@ -711,6 +794,19 @@ object SyncState {
     /// stop the sync loop
     fn cancel();
 }
+
+object CreateGroupSettings {
+    /// set the alias of group
+    fn alias(value: string);
+
+    /// set the group's visibility to either Public or Private
+    fn visibility(value: string);
+
+    /// add the id of user that will be invited to this group
+    fn add_invitee(value: string);
+}
+
+fn new_group_settings(name: string) -> CreateGroupSettings;
 
 /// Main entry point for `effektio`.
 object Client {
@@ -798,6 +894,9 @@ object Client {
 
     /// the Tasks lists of this Group
     fn task_lists() -> Future<Result<Vec<TaskList>>>;
+
+    /// create default group
+    fn create_effektio_group(settings: CreateGroupSettings) -> Future<Result<RoomId>>;
 
     /// listen to updates to any model key
     fn subscribe(key: string) -> Stream<bool>;

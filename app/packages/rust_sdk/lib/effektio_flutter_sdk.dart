@@ -5,8 +5,8 @@ import 'dart:ffi';
 import 'dart:io';
 
 import 'package:effektio_flutter_sdk/effektio_flutter_sdk_ffi.dart' as ffi;
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:package_info/package_info.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -161,6 +161,7 @@ class EffektioSdk {
               level: 900, // warning
               error: e,
             );
+            return e is int;
           },
         ),
       ); // Explicitly-ignored fire-and-forget.
@@ -182,6 +183,7 @@ class EffektioSdk {
             level: 900, // warning
             error: e,
           );
+          return e is int;
         },
       ),
     ); // Explicitly-ignored fire-and-forget.
@@ -226,5 +228,9 @@ class EffektioSdk {
 
   List<ffi.Client> get clients {
     return _clients;
+  }
+
+  ffi.CreateGroupSettings newGroupSettings(String name) {
+    return _api.newGroupSettings(name);
   }
 }

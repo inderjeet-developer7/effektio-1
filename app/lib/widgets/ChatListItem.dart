@@ -1,8 +1,7 @@
-import 'package:beamer/beamer.dart';
 import 'package:effektio/common/store/themes/SeperatedThemes.dart';
 import 'package:effektio/controllers/chat_list_controller.dart';
 import 'package:effektio/controllers/receipt_controller.dart';
-import 'package:effektio/models/ChatModel.dart';
+import 'package:effektio/screens/HomeScreens/chat/ChatScreen.dart';
 import 'package:effektio/widgets/AppCommon.dart';
 import 'package:effektio/widgets/CustomAvatar.dart';
 import 'package:effektio_flutter_sdk/effektio_flutter_sdk_ffi.dart';
@@ -98,12 +97,17 @@ class _ChatListItemState extends State<ChatListItem> {
   }
 
   void handleTap(BuildContext context) {
-    Beamer.of(context).beamToNamed('/chat', data: ChatModel(
-      client: widget.client,
-      room: widget.room,
-      roomName: displayName,
-      roomAvatar: avatar,
-    ),);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ChatScreen(
+          client: widget.client,
+          room: widget.room,
+          roomName: displayName,
+          roomAvatar: avatar,
+        ),
+      ),
+    );
   }
 
   Widget buildTitle(BuildContext context) {
@@ -138,78 +142,82 @@ class _ChatListItemState extends State<ChatListItem> {
     if (eventItem == null) {
       return const SizedBox();
     }
+
     String sender = eventItem.sender();
-    String itemContentType = eventItem.itemContentType();
-    if (itemContentType == 'Encrypted') {
-      return Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Text(
-              '${simplifyUserId(sender)}: ',
+    String eventType = eventItem.eventType();
+
+    // message event
+    switch (eventType) {
+      case 'm.call.answer':
+      case 'm.call.candidates':
+      case 'm.call.hangup':
+      case 'm.call.invite':
+      case 'm.key.verification.accept':
+      case 'm.key.verification.cancel':
+      case 'm.key.verification.done':
+      case 'm.key.verification.key':
+      case 'm.key.verification.mac':
+      case 'm.key.verification.ready':
+      case 'm.key.verification.start':
+      case 'm.reaction':
+      case 'm.room.encrypted':
+      case 'm.room.redaction':
+      case 'm.sticker':
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Text(
+                '${simplifyUserId(sender)}: ',
+                style: const TextStyle(color: ChatTheme01.chatBodyTextColor),
+              ),
+            ),
+            Text(
+              eventItem.textDesc()!.body(),
               style: const TextStyle(color: ChatTheme01.chatBodyTextColor),
             ),
-          ),
-          const Text(
-            'RoomEncryptedEvent',
-            style: TextStyle(color: ChatTheme01.chatBodyTextColor),
-          ),
-        ],
-      );
-    }
-    if (itemContentType == 'RedactedMessage') {
-      return Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Text(
-              '${simplifyUserId(sender)}: ',
-              style: const TextStyle(color: ChatTheme01.chatBodyTextColor),
+          ],
+        );
+      case 'm.room.message':
+        TextDesc? textDesc = eventItem.textDesc();
+        if (textDesc == null) {
+          return const SizedBox();
+        }
+        String body = textDesc.body();
+        String? formattedBody = textDesc.formattedBody();
+        if (formattedBody != null) {
+          body = simplifyBody(formattedBody);
+        }
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Text(
+                '${simplifyUserId(sender)}: ',
+                style: const TextStyle(color: ChatTheme01.chatBodyTextColor),
+              ),
             ),
-          ),
-          const Text(
-            'RoomRedactionEvent',
-            style: TextStyle(color: ChatTheme01.chatBodyTextColor),
-          ),
-        ],
-      );
-    }
-    TextDesc? textDesc = eventItem.textDesc();
-    if (textDesc == null) {
-      return const SizedBox();
-    }
-    String body = textDesc.body();
-    String? formattedBody = textDesc.formattedBody();
-    if (formattedBody != null) {
-      body = simplifyBody(formattedBody);
-    }
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Text(
-            '${simplifyUserId(sender)}: ',
-            style: const TextStyle(color: ChatTheme01.chatBodyTextColor),
-          ),
-        ),
-        Flexible(
-          child: Html(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            // ignore: unnecessary_string_interpolations
-            data: '''$body''',
-            maxLines: 1,
-            defaultTextStyle: const TextStyle(
-              color: ChatTheme01.chatBodyTextColor,
-              overflow: TextOverflow.ellipsis,
+            Flexible(
+              child: Html(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                // ignore: unnecessary_string_interpolations
+                data: '''$body''',
+                maxLines: 1,
+                defaultTextStyle: const TextStyle(
+                  color: ChatTheme01.chatBodyTextColor,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                onLinkTap: (url) => {},
+              ),
             ),
-            onLinkTap: (url) => {},
-          ),
-        ),
-      ],
-    );
+          ],
+        );
+    }
+
+    // exclude state event
+    return const SizedBox();
   }
 
   Widget? buildTrailing(BuildContext context) {

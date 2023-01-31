@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:beamer/beamer.dart';
 import 'package:effektio/common/store/MockData.dart';
 import 'package:effektio/common/store/themes/SeperatedThemes.dart';
 import 'package:effektio/widgets/InviteUser.dart';
@@ -24,7 +23,7 @@ class ToDoTaskAssignScreen extends StatelessWidget {
         backgroundColor: ToDoTheme.secondaryColor,
         leading: IconButton(
           onPressed: () {
-            Beamer.of(context).beamBack();
+            Navigator.pop(context);
           },
           icon: const Icon(Icons.close),
           color: ToDoTheme.primaryTextColor,
@@ -105,7 +104,7 @@ class ToDoTaskAssignScreen extends StatelessWidget {
                       ),
                       Text(
                         '${avatars.length}',
-                        style: ToDoTheme.subtitleTextStyle,
+                        style: ToDoTheme.descriptionTextStyle,
                       ),
                     ],
                   ),
@@ -142,14 +141,15 @@ class ToDoTaskAssignScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Someone not in the list? Just Invite them',
+                Text(
+                  'Someone not in the list? Just Invite them',
                   style: ToDoTheme.taskTitleTextStyle.copyWith(
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
                   ),
                 ),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     showDialogBox(context);
                   },
                   child: Container(
@@ -162,11 +162,15 @@ class ToDoTaskAssignScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.group, color: ToDoTheme.primaryTextColor,),
+                        const Icon(
+                          Icons.group,
+                          color: ToDoTheme.primaryTextColor,
+                        ),
                         const SizedBox(
                           width: 8.0,
                         ),
-                        Text('Invite Members',
+                        Text(
+                          'Invite Members',
                           style: ToDoTheme.taskTitleTextStyle.copyWith(
                             fontWeight: FontWeight.w500,
                             fontSize: 14,
@@ -192,6 +196,4 @@ class ToDoTaskAssignScreen extends StatelessWidget {
       },
     );
   }
-
-
 }

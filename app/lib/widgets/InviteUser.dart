@@ -18,8 +18,8 @@ class _InviteUserDialogState extends State<InviteUserDialog> {
         children: [
           Container(
             padding: const EdgeInsets.symmetric(
-              horizontal: 16.0,
-              vertical: 24.0,
+              horizontal: 16,
+              vertical: 24,
             ),
             child: Center(
               child: Column(
@@ -29,13 +29,11 @@ class _InviteUserDialogState extends State<InviteUserDialog> {
                     'Invite Friends',
                     style: ToDoTheme.titleTextStyle.copyWith(fontSize: 18),
                   ),
-                  const SizedBox(
-                    height: 4,
-                  ),
+                  const SizedBox(height: 4),
                   Text(
                     'You can invite your friends to ToDo today via',
                     textAlign: TextAlign.center,
-                    style: ToDoTheme.subtitleTextStyle.copyWith(
+                    style: ToDoTheme.descriptionTextStyle.copyWith(
                       color: ToDoTheme.calendarColor,
                       fontSize: 15,
                     ),
@@ -110,4 +108,5 @@ class _InviteUserDialogState extends State<InviteUserDialog> {
       ),
     );
   }
+
 }

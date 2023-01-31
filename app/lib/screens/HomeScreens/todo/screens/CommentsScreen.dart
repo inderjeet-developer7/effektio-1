@@ -154,7 +154,7 @@ class _ToDoCommentScreenState extends State<ToDoCommentScreen> {
                   width: MediaQuery.of(context).size.width,
                   height: 250,
                   child: EmojiPicker(
-                    onEmojiSelected: (Category category, Emoji emoji) {
+                    onEmojiSelected: (Category? category, Emoji emoji) {
                       onEmojiSelected(emoji);
                     },
                     onBackspacePressed: onBackspacePressed,
@@ -168,7 +168,6 @@ class _ToDoCommentScreenState extends State<ToDoCommentScreen> {
                       indicatorColor: Colors.blue,
                       iconColor: Colors.grey,
                       iconColorSelected: Colors.blue,
-                      progressIndicatorColor: Colors.blue,
                       backspaceColor: Colors.blue,
                       skinToneDialogBgColor: Colors.white,
                       skinToneIndicatorColor: Colors.grey,
