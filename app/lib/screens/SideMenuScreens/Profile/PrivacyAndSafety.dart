@@ -1,11 +1,13 @@
-import 'package:beamer/beamer.dart';
 import 'package:effektio/common/store/themes/SeperatedThemes.dart';
 import 'package:effektio/controllers/privacy_session_controller.dart';
+import 'package:effektio/screens/SideMenuScreens/Profile/ProtectedAccessScreen.dart';
 import 'package:effektio/widgets/AppCommon.dart';
 import 'package:effektio/widgets/FlutterSwitch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+
+import 'SessionManagementScreen.dart';
 
 class PrivacyAndSafety extends StatefulWidget {
   const PrivacyAndSafety({Key? key}) : super(key: key);
@@ -22,7 +24,9 @@ class _PrivacyAndSafetyState extends State<PrivacyAndSafety> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () => Beamer.of(context).beamBack(),
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: SvgPicture.asset(
             'assets/images/back_button.svg',
             color: AppCommonTheme.svgIconColor,
@@ -115,7 +119,8 @@ class _PrivacyAndSafetyState extends State<PrivacyAndSafety> {
           color: ProfileTheme.cardBackgroundColor,
           child: ListTile(
             onTap: () {
-              Beamer.of(context).beamToNamed('/sessionManager');
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const SessionManager()));
             },
             leading: const Text(
               'Sessions',
@@ -372,7 +377,8 @@ class _PrivacyAndSafetyState extends State<PrivacyAndSafety> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Beamer.of(context).beamToNamed('/protectAccess');
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const ProtectedAccessScreen()));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),

@@ -100,7 +100,7 @@ class SideDrawer extends StatelessWidget {
     }
     return GestureDetector(
       onTap: () {
-        Beamer.of(context).beamToNamed('/profile');
+        Navigator.pushNamed(context, '/profile');
       },
       child: Row(
         children: [

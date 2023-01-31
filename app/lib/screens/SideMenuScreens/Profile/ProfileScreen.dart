@@ -1,6 +1,6 @@
-import 'package:beamer/beamer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:effektio/common/store/themes/SeperatedThemes.dart';
+import 'package:effektio/screens/SideMenuScreens/Profile/PrivacyAndSafety.dart';
 import 'package:effektio/widgets/AppCommon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -252,7 +252,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           ListTile(
             onTap: () {
-              Beamer.of(context).beamToNamed('/privacy');
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const PrivacyAndSafety()));
             },
             leading: SvgPicture.asset(
               'assets/images/lock_filled.svg',

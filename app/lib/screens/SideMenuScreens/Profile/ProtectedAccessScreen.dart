@@ -1,4 +1,3 @@
-import 'package:beamer/beamer.dart';
 import 'package:effektio/common/store/themes/SeperatedThemes.dart';
 import 'package:effektio/controllers/privacy_session_controller.dart';
 import 'package:effektio/widgets/AppCommon.dart';
@@ -22,7 +21,9 @@ class _ProtectedAccessScreenState extends State<ProtectedAccessScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () => Beamer.of(context).beamBack(),
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: SvgPicture.asset(
             'assets/images/back_button.svg',
             color: AppCommonTheme.svgIconColor,
@@ -92,7 +93,8 @@ class _ProtectedAccessScreenState extends State<ProtectedAccessScreen> {
             ),
             GestureDetector(
               onTap: () {
-                Beamer.of(context).beamToNamed('/protectAccess');
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ProtectedAccessScreen()));
               },
               child: Padding(
                 padding: const EdgeInsets.all(16.0),

@@ -15,7 +15,7 @@ import 'package:effektio/screens/HomeScreens/todo/ToDoScreen.dart';
 import 'package:effektio/screens/OnboardingScreens/LogIn.dart';
 import 'package:effektio/screens/OnboardingScreens/Signup.dart';
 import 'package:effektio/screens/SideMenuScreens/Gallery.dart';
-import 'package:effektio/screens/UserScreens/SocialProfile.dart';
+import 'package:effektio/screens/SideMenuScreens/Profile/ProfileScreen.dart';
 import 'package:effektio/widgets/AppCommon.dart';
 // import 'package:effektio/widgets/AppCommon.dart';
 import 'package:effektio/widgets/CrossSigning.dart';
@@ -29,12 +29,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_mentions/flutter_mentions.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:themed/themed.dart';
 
@@ -77,7 +77,7 @@ class Effektio extends StatelessWidget {
             routes: <String, WidgetBuilder>{
               '/': (BuildContext context) => const EffektioHome(),
               '/login': (BuildContext context) => const LoginScreen(),
-              '/profile': (BuildContext context) => const SocialProfileScreen(),
+              '/profile': (BuildContext context) => const ProfileScreen(),
               '/signup': (BuildContext context) => const SignupScreen(),
               '/gallery': (BuildContext context) => const GalleryScreen(),
               '/addTodo': (BuildContext context) => const AddToDoScreen(),
